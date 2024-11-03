@@ -9,9 +9,20 @@ resource "aws_instance" "name" {
     key_name = "New-Key"
     vpc_security_group_ids = ["sg-0cde5f587e0bdff1b"]
     tags = {
-      Name = "Test01-Staging-dev"
+      Name = "Test-Instance"
     }
     
+
+}
+resource "aws_dynamodb_table" "dynamodb_table" {
+  name = "state-locking"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
   
 }
 terraform {
@@ -21,6 +32,7 @@ terraform {
     encrypt = true
     region = "ap-south-1"
     dynamodb_table = "state-locking"
+    
 
     
   }
