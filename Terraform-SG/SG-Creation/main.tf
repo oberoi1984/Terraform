@@ -1,6 +1,6 @@
 provider "aws" {
-  region  = "ap-south-1" # Replace with your desired region
-  profile = "default"    # Replace with your actual AWS profile if you want to use a named profile
+  region  = "ap-south-1"
+  profile = "default"    
 }
 resource "aws_security_group" "custom_sg" {
   name        = var.name
